@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -17,6 +18,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 Route::get('/products', [ProductController::class, 'index']);
+Route::get('/cart', [CartController::class, 'index']);
 
 Route::get('/product', function(){
     Log::info("test");
