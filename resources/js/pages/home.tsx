@@ -1,5 +1,5 @@
-import Header from "../pages/header/header";
-import Footer from "./footer/footer";
+import Header from "../pages/components/Header";
+import Footer from "../pages/components/Footer";
 
   export default function Gallery() {
     return (
