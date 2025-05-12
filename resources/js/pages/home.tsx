@@ -4,15 +4,17 @@ import Banner from "../pages/components/HomePageBanner";
 import Category from "../pages/components/Category";
 import ProductList from "../pages/components/ProductList";
 
-  export default function Gallery() {
-    return (
-      <section>
-        <Header />
-        <Banner />
-        <Category />
-        <ProductList /><br />
-        <Footer />
-      </section>
-    );
-  }
-  
+let dataProducts = '/products';
+
+export default function Home({ isLogin }) {
+
+  return (
+    <section>
+      <Header isLogin={isLogin} />
+      <Banner />
+      <Category />
+      <ProductList /><br />
+      <Footer />
+    </section>
+  );
+}
