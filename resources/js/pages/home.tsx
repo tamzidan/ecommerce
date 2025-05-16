@@ -1,20 +1,34 @@
-import Header from "../pages/components/Header";
-import Footer from "../pages/components/Footer";
-import Banner from "../pages/components/HomePageBanner";
-import Category from "../pages/components/Category";
-import ProductList from "../pages/components/ProductList";
+import React from 'react';
+import CategoryMenu from '../pages/components/Category';
+import Footer from '../pages/components/Footer';
+import Header from './components/Header/Header';
+import ProductList from './components/ProductList';
+import HomePageBanner from './components/HomePageBanner';
 
-let dataProducts = '/products';
-
-export default function Home({ isLogin }) {
-
+const HomePage = () => {
   return (
-    <section>
-      <Header isLogin={isLogin} />
-      <Banner />
-      <Category />
-      <ProductList /><br />
+    <div className="flex flex-col min-h-screen">
+      {/* Header Section */}
+      <Header />
+
+      {/* Banner Section */}
+      <HomePageBanner />
+
+      {/* Category */}
+      <div className="mx-auto w-full max-w-7xl px-4">
+        <CategoryMenu />
+      </div>
+
+      {/* Main Content - Product List */}
+      <main className="flex-grow mx-auto w-full max-w-7xl px-4 py-6">
+        <h1 className="text-2xl font-bold mb-6">Katalog Produk</h1>
+        <ProductList />
+      </main>
+
+      {/* Footer */}
       <Footer />
-    </section>
+    </div>
   );
-}
+};
+
+export default HomePage;

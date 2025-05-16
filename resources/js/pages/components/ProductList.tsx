@@ -1,46 +1,57 @@
 import React from 'react';
 
-const products = '/products';
+interface ProductItemProps {
+    name: string;
+    price: number;
+}
 
-// type ProductListProps = {
-//   products: Product[];
-//   onAddToCart: (product: Product) => void;
-// };
+// ProductCard component is now defined within the same file
+const ProductCard = ({ name, price }: ProductItemProps) => {
+    return (
+        <div className="border rounded-md overflow-hidden flex flex-col">
+            {/* Product Image */}
+            <div className="aspect-square bg-gray-100 flex items-center justify-center">
+                <span className="text-gray-400">Product Image</span>
+            </div>
 
-type Product = {
-  id: number;
-  name: string;
-  slug: string;
-  description: string;
-  price: string;
+            {/* Product Info */}
+            <div className="p-4">
+                <h3 className="font-medium">{name}</h3>
+                <p className="text-sm text-gray-600 mt-1">Rp {price.toFixed(3)}</p>
+            </div>
+        </div>
+    );
 };
 
-type Props = {
-  products: Product[];
-};
+// Main ProductList component that contains the grid and the ProductCard components
+const ProductList = () => {
+    // Sample product data
+    const products = [
+        { id: 1, name: 'Product 1', price: 29.99 },
+        { id: 2, name: 'Product 2', price: 39.99 },
+        { id: 3, name: 'Product 3', price: 49.99 },
+        { id: 4, name: 'Product 4', price: 59.99 },
+        { id: 5, name: 'Product 5', price: 69.99 },
+        { id: 6, name: 'Product 6', price: 79.99 },
+        { id: 7, name: 'Product 7', price: 89.99 },
+        { id: 8, name: 'Product 8', price: 99.99 },
+        { id: 9, name: 'Product 9', price: 109.99 },
+        { id: 10, name: 'Product 10', price: 119.99 },
+    ];
 
-
-const ProductList = ({ products} : Props) => {
-  return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-4">
-          <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4"></h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          <div className="border rounded-lg p-4 shadow hover:shadow-md transition">
-            <img className="w-full h-40 object-cover mb-4 rounded" />
-            <h2 className="text-lg font-semibold"></h2>
-            <p className="text-gray-600 mb-2">Rp </p>
-            <button
-              className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
-            >
-              Add to Cart
-            </button>
-          </div>
-      </div>
-    </div>
-    </div>
-    
-  );
+    return (
+        <div>
+            <div className="grid grid-cols-5 gap-6">
+                {products.map((product) => (
+                    <ProductCard
+                        key={product.id}
+                        name={product.name}
+                        price={product.price}
+                    />
+                ))}
+            </div>
+        </div>
+    );
 };
 
 export default ProductList;
