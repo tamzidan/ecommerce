@@ -4,12 +4,21 @@ import Footer from '../pages/components/Footer';
 import Header from './components/Header/Header';
 import ProductList from './components/ProductList';
 import HomePageBanner from './components/HomePageBanner';
+import { usePage } from '@inertiajs/react';   // ⬅️ hook bawaan Inertia
+
+interface PageProps {
+  isLogin: boolean;
+  [key: string]: unknown;
+}
 
 const HomePage = () => {
+  const { props } = usePage<PageProps>();
+  const { isLogin } = props;
+
   return (
     <div className="flex flex-col min-h-screen">
       {/* Header Section */}
-      <Header />
+      <Header isLogin={isLogin} />
 
       {/* Banner Section */}
       <HomePageBanner />
