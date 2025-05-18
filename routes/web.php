@@ -21,14 +21,13 @@ Route::get('/cart', [CartController::class, 'index']);
 
 Route::get('/home', function(){
     $isLogin = Auth::check();
-    $products = App\Models\Product::all();   
+    $products = App\Models\Product::orderBy('created_at', 'desc')->paginate(10);   
 
     return Inertia::render('home', [
         'isLogin' => $isLogin,
         'products' => $products
     ]);
 })->name('home');
-
 
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';

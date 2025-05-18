@@ -12,9 +12,15 @@ interface Product {
   price: number;
 }
 
+interface ProductsPagination {
+  data: Product[];
+  current_page: number;
+  last_page: number;
+}
+
 interface PageProps {
   isLogin: boolean;
-  products: Product[];
+  products: ProductsPagination;
   [key: string]: unknown;
 }
 
@@ -38,7 +44,7 @@ const HomePage = () => {
       {/* Product List Section */}
       <main className="flex-grow mx-auto w-full max-w-7xl px-4 py-6">
         <h1 className="text-2xl font-bold mb-6">Katalog Produk</h1>
-        <ProductList products={products} />
+        <ProductList products={products.data} />
       </main>
 
       {/* Footer Section */}
