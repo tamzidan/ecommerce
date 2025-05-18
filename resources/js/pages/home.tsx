@@ -4,7 +4,7 @@ import Footer from '../pages/components/Footer';
 import Header from './components/Header/Header';
 import ProductList from './components/ProductList';
 import HomePageBanner from './components/HomePageBanner';
-import { usePage } from '@inertiajs/react';   // ⬅️ hook bawaan Inertia
+import { usePage } from '@inertiajs/react';
 
 interface Product {
   id: number;
@@ -14,7 +14,7 @@ interface Product {
 
 interface PageProps {
   isLogin: boolean;
-  products: Product[];       // ← tambahkan
+  products: Product[];
   [key: string]: unknown;
 }
 
@@ -30,18 +30,18 @@ const HomePage = () => {
       {/* Banner Section */}
       <HomePageBanner />
 
-      {/* Category */}
+      {/* Category Section */}
       <div className="mx-auto w-full max-w-7xl px-4">
         <CategoryMenu />
       </div>
 
-      {/* Main Content - Product List */}
+      {/* Product List Section */}
       <main className="flex-grow mx-auto w-full max-w-7xl px-4 py-6">
         <h1 className="text-2xl font-bold mb-6">Katalog Produk</h1>
         <ProductList products={products} />
       </main>
 
-      {/* Footer */}
+      {/* Footer Section */}
       <Footer />
     </div>
   );

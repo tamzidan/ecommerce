@@ -18,15 +18,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 Route::get('/cart', [CartController::class, 'index']);
-// Route::get('/products', [ProductController::class, 'index']);
-
-// Route::get('/product', function(){
-//     return Inertia::render('product');
-// });
 
 Route::get('/home', function(){
     $isLogin = Auth::check();
-    $products = App\Models\Product::all();   // ambil semua produk
+    $products = App\Models\Product::all();   
 
     return Inertia::render('home', [
         'isLogin' => $isLogin,
