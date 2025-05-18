@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return Inertia::render('welcome');
-})->name('home');
+})->name('welcome');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () {
@@ -16,7 +16,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboard');
 });
 
-Route::get('/products', [ProductController::class, 'index']);
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 Route::get('/cart', [CartController::class, 'index']);
 // Route::get('/products', [ProductController::class, 'index']);
 
@@ -26,7 +26,12 @@ Route::get('/cart', [CartController::class, 'index']);
 
 Route::get('/home', function(){
     $isLogin = Auth::check();
-    return Inertia::render('home', ['isLogin' => $isLogin]);
+    $products = App\Models\Product::all();   // ambil semua produk
+
+    return Inertia::render('home', [
+        'isLogin' => $isLogin,
+        'products' => $products
+    ]);
 })->name('home');
 
 

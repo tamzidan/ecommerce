@@ -6,14 +6,21 @@ import ProductList from './components/ProductList';
 import HomePageBanner from './components/HomePageBanner';
 import { usePage } from '@inertiajs/react';   // ⬅️ hook bawaan Inertia
 
+interface Product {
+  id: number;
+  name: string;
+  price: number;
+}
+
 interface PageProps {
   isLogin: boolean;
+  products: Product[];       // ← tambahkan
   [key: string]: unknown;
 }
 
 const HomePage = () => {
   const { props } = usePage<PageProps>();
-  const { isLogin } = props;
+  const { isLogin, products } = props;
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -31,7 +38,7 @@ const HomePage = () => {
       {/* Main Content - Product List */}
       <main className="flex-grow mx-auto w-full max-w-7xl px-4 py-6">
         <h1 className="text-2xl font-bold mb-6">Katalog Produk</h1>
-        <ProductList />
+        <ProductList products={products} />
       </main>
 
       {/* Footer */}
