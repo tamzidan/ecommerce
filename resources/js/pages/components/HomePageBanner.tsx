@@ -8,7 +8,7 @@ const HomePageBanner = () => {
                     <div className="text-center">
                         <h2 className="text-3xl font-bold mb-2">Special Promotion</h2>
                         <p className="text-lg text-gray-600 mb-4">Diskon hingga 50% untuk semua produk terbaru</p>
-                        <button className="px-6 py-2 bg-black text-white rounded-md hover:bg-gray-800">
+                        <button className="px-6 py-2 bg-black text-white rounded-md cursor-pointer hover:bg-gray-400 hover:text-black">
                             Lihat Sekarang
                         </button>
                     </div>

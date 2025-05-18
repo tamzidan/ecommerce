@@ -8,7 +8,7 @@ interface ProductItemProps {
 // ProductCard component is now defined within the same file
 const ProductCard = ({ name, price }: ProductItemProps) => {
     return (
-        <div className="border rounded-md overflow-hidden flex flex-col">
+        <div className="border rounded-md overflow-hidden flex flex-col cursor-pointer">
             {/* Product Image */}
             <div className="aspect-square bg-gray-100 flex items-center justify-center">
                 <span className="text-gray-400">Product Image</span>
