@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 
@@ -15,8 +16,13 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::orderBy('created_at', 'desc')->paginate(10);
-        return Inertia::render('ProductsPage', [ 'products' => $products ]);
+        $isLogin = Auth::check();
+        $products = Product::orderBy('created_at', 'desc')->paginate(10);   
+
+        return Inertia::render('components/ProductDetail', [
+            'isLogin' => $isLogin,
+            'product' => $products
+        ]);
     }
 
     /**
@@ -40,7 +46,17 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        $isLogin = Auth::check();
+        $suggested = Product::where('id', '!=', $product->id)
+                            ->inRandomOrder()
+                            ->limit(5)
+                            ->get();
+
+        return Inertia::render('home', [ // Tetap ke "home"
+            'product' => $product,
+            'suggested' => $suggested,
+            'isLogin' => $isLogin,
+        ]);
     }
 
     /**

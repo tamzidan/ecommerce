@@ -16,7 +16,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboard');
 });
 
-Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+Route::get('/products', [ProductController::class, 'index'])->name('products');
+Route::get('/products/{product:slug}', [ProductController::class, 'show'])->name('products.show');
+
 Route::get('/cart', [CartController::class, 'index']);
 
 Route::get('/home', function(){
